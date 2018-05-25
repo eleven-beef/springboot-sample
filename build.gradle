@@ -1,0 +1,53 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.9.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+processResources.destinationDir = compileJava.destinationDir
+compileJava.dependsOn processResources
+
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+    mavenLocal()
+    maven { url "http://repo.spring.io/libs-snapshot" }
+    maven { url "http://repo.spring.io/milestone" }
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	runtime('org.springframework.boot:spring-boot-devtools')
+
+	// DB接続を行うために追加 doma2利用
+	compile("org.springframework.boot:spring-boot-starter-jdbc")
+	compile("org.seasar.doma.boot:doma-spring-boot-starter:1.1.0")
+	runtime('org.postgresql:postgresql')
+
+	//SpringSecurityを使うため追加
+  	compile('org.springframework.boot:spring-boot-starter-security')
+  	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4')
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+idea.module.inheritOutputDirs = true

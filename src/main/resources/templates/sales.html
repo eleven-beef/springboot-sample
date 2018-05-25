@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+ <link th:href="@{/css/page.css}" rel="stylesheet" type="text/css"/>
+ </head>
+<body>
+  <div class="container">
+	 <div class="col-md-6">
+        <form th:action="@{/sales}" th:object="${form}"  method="post">
+        <ul>
+      		<li th:each="e : ${#fields.detailedErrors()}" th:class="${e.global}? globalerrMsg : fielderrMsg" th:text="${e.message}" />
+    	</ul>
+          <div class="input-group">
+            <input type="text" th:field="*{goodsCode}" th:errorclass="fieldError" />
+            <input type="text" th:field="*{goodsName}" th:errorclass="fieldError" />
+            <span class="input-group-btn">
+              <input class="btn btn-default" type="submit" value="Search!" />
+            </span>
+          </div>
+        </form>
+      </div>
+  </div>
+</body>
+</html>

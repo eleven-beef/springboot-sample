@@ -1,0 +1,9 @@
+.fielderrMsg {
+  color: red;
+}
+.globalerrMsg {
+  color: blue;
+}
+.fieldError {
+  background-color: #ff8080;
+}
