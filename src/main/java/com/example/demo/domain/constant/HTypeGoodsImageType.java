@@ -5,7 +5,6 @@ import org.seasar.doma.Domain;
 @Domain(valueType = String.class, factoryMethod = "of")
 public enum HTypeGoodsImageType {
 
-    /*---------- ITC#347 Customization Area is ラベル名変更 here. ----------*/
 	/** PS1=サムネイル画像（PC） */
     THUMBNAIL_PC("PS1"),
 
@@ -24,13 +23,11 @@ public enum HTypeGoodsImageType {
     /** PD3=詳細画像１　大（PC） */
     DETAIL3_PC("PD3"),
 
-    /*---------- ITC#347 Customization Area is from here. ----------*/
     /** MD2=詳細画像１　中（携帯） */
     DETAIL2_MB("MD2"),
 
     /** MD3=詳細画像１　大（携帯） */
     DETAIL3_MB("MD3"),
-    /*---------- ITC#347 Customization Area is to here. ----------*/
 
     /** PT1=タイトル画像（PC） */
     TITLE_PC("PT1"),
