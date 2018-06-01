@@ -11,6 +11,10 @@
       		<li th:each="e : ${#fields.detailedErrors()}" th:class="${e.global}? globalerrMsg : fielderrMsg" th:text="${e.message}" />
     	</ul>
           <div class="input-group">
+            <input type="text" th:field="*{saleTimeFrom}" title="開始日（From）" th:errorclass="fieldError" />
+            <input type="text" th:field="*{saleTimeTo}" title="終了日（To）" th:errorclass="fieldError" />
+            <input type="text" th:field="*{brand}" th:errorclass="fieldError" />
+            <input type="text" th:field="*{catalogCode}" th:errorclass="fieldError" />
             <input type="text" th:field="*{goodsCode}" th:errorclass="fieldError" />
             <input type="text" th:field="*{goodsName}" th:errorclass="fieldError" />
             <span class="input-group-btn">
@@ -18,6 +22,20 @@
             </span>
           </div>
         </form>
+   <table class="list">
+    <tr>
+      <th>区分</th>
+      <th>商品名</th>
+      <th>規格1</th>
+      <th>規格2</th>
+    </tr>
+    <tr th:each="salesSummaryDto:${salesSummaryDtoList}">
+      <td th:text="${salesSummaryDto.priceType}"></td>
+      <td th:text="${salesSummaryDto.goodsName}"></td>
+      <td th:text="${salesSummaryDto.unitValue1}"></td>
+      <td th:text="${salesSummaryDto.unitValue2}"></td>
+    </tr>
+  </table>
       </div>
   </div>
 </body>

@@ -15,6 +15,13 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
+eclipse.classpath.file {
+        whenMerged { classpath ->
+                classpath.entries.findAll { entry -> entry.kind == 'output' }*.path = 'build/classes/main'
+        }
+}
+
+//Domaおまじない
 processResources.destinationDir = compileJava.destinationDir
 compileJava.dependsOn processResources
 
@@ -35,6 +42,16 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+
+	// Data and Time API
+	compile('org.thymeleaf.extras:thymeleaf-extras-java8time')
+
+	// Been Mapper
+	compile ('org.modelmapper:modelmapper:2.0.0')
+
+	// Lombok
+	compile ('org.projectlombok:lombok:1.16.22')
+
 	compile('org.springframework.boot:spring-boot-starter-web')
 	runtime('org.springframework.boot:spring-boot-devtools')
 
