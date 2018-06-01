@@ -75,7 +75,7 @@ public class SearchController {
 	  if (result.hasErrors()) {
 	        for(FieldError err: result.getFieldErrors()) {
 	            log.debug("error code = [" + err.getCode() + "]");
-	        }
+	        }	
 	      mav.setViewName("sales");
 	      return mav;
 	    }
