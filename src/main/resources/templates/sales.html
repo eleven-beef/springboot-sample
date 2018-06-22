@@ -2,11 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
  <link th:href="@{/css/page.css}" rel="stylesheet" type="text/css"/>
+
+ <script type="text/javascript">
+    function pagination(page) {
+    	console.log(page);
+    	// エレメントを作成
+        var ele = document.createElement('input');
+        // データを設定
+        ele.setAttribute('type', 'hidden');
+        ele.setAttribute('name', 'page');
+        ele.setAttribute('value', page);
+        // 要素を追加
+        document.form.appendChild(ele);
+        document.form.submit();
+    }
+    </script>
  </head>
 <body>
   <div class="container">
 	 <div class="col-md-6">
-        <form th:action="@{/sales}" th:object="${form}"  method="post">
+        <form th:action="@{/sales}" th:object="${form}" name="form" method="post">
         <ul>
       		<li th:each="e : ${#fields.detailedErrors()}" th:class="${e.global}? globalerrMsg : fielderrMsg" th:text="${e.message}" />
     	</ul>
@@ -36,6 +51,28 @@
       <td th:text="${salesSummaryDto.unitValue2}"></td>
     </tr>
   </table>
+  <div class="col-md-6 col-md-offset-3" id="paging" th:if="!${#lists.isEmpty(salesSummaryDtoList)}" th:fragment='paginationbar'>
+	<div th:fragment='paginationbar'>
+            <ul>
+                <li th:class="${page.first} ? 'disabled':''" style="display:inline">
+                    <span th:if="${page.first}">←先頭</span>
+                    <a th:if="${not page.first}" href="#" th:attr="onclick='pagination(0);'">←先頭</a>
+
+                </li>
+                <li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}' th:class="(${i}==${page.number})? 'active' : ''" style="display:inline">
+                    <span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+                    <a th:if='${i}!=${page.number}' href="#" th:attr="onclick='pagination(' + ${i} + ');'">
+                        <span th:text='${i+1}'>1</span>
+                    </a>
+                </li>
+                <li th:class="${page.last} ? 'disabled':''" style="display:inline">
+                    <span th:if="${page.last}">末尾➝</span>
+                    <a th:if="${not page.last}" href="#" th:attr="onclick='pagination(' + __${page.totalPages}-1__ + ');'">末尾➝</a>
+
+                </li>
+            </ul>
+        </div>
+</div>
       </div>
   </div>
 </body>

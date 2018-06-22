@@ -5,8 +5,6 @@ import java.time.LocalDate;
 
 import javax.validation.constraints.Size;
 
-import org.seasar.doma.jdbc.SelectOptions;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -54,9 +52,6 @@ public class SalesSummaryConditionDto implements Serializable  {
 
     /** 並替項目 */
 	public boolean orderAsc;
-
-	public SelectOptions options;
-
 
 
 }

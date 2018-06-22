@@ -60,6 +60,9 @@ dependencies {
 	compile("org.seasar.doma.boot:doma-spring-boot-starter:1.1.0")
 	runtime('org.postgresql:postgresql')
 
+	// DataSource の AutoConfiguration と Spring Data の Pageable インターフェースを利用する
+	compile("org.springframework.boot:spring-boot-starter-data-jpa")
+
 	//SpringSecurityを使うため追加
   	compile('org.springframework.boot:spring-boot-starter-security')
   	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4')

@@ -2,8 +2,13 @@ package com.example.demo.domain.service;
 
 import java.util.List;
 
+import org.seasar.doma.jdbc.SelectOptions;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.example.demo.domain.dto.SalesSummaryConditionDto;
 import com.example.demo.domain.entity.SalesSummaryDto;
+
 
 
 /**
@@ -21,6 +26,18 @@ public interface SalesSummaryGetService {
      * @param salesSummaryConditionDto 検索条件
      * @return 検索結果
      */
-    List<SalesSummaryDto> execute(SalesSummaryConditionDto salesSummaryConditionDto);
+    List<SalesSummaryDto> execute(SalesSummaryConditionDto salesSummaryConditionDto, SelectOptions options);
+
+    /**
+    *
+    * 売上集計検索サービス
+    *
+    * @param salesSummaryConditionDto 検索条件
+    * @return 検索結果
+    */
+   Page<SalesSummaryDto> execute(SalesSummaryConditionDto salesSummaryConditionDto, Pageable pageable);
+
+
+
 }
 
